@@ -19,7 +19,7 @@ function Login() {
 
   const loginUser = () => {
     axios
-      .post("/api/api/users/login", {
+      .post("/api/users/login", {
         email: values.email,
         password: values.password,
       })
