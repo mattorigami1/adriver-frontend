@@ -11,6 +11,8 @@ function AddVideos({ editId, setEditId, setActiveItem }) {
   const [errors, setErrors] = useState({});
   const [loaded, setLoaded] = useState(0);
   const [created, setCreated] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [totalSize, setTotalSize] = useState(0);
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -39,16 +41,7 @@ function AddVideos({ editId, setEditId, setActiveItem }) {
     setIsLoading(false);
   };
 
-  // const setFormData = async () => {
-  //   const data = new FormData();
-
-  //   data.append("name", videoName);
-  //   data.append("description", description);
-  //   data.append("video", selectedVideo);
-  //   data.append("image", selectedImage);
-
-  //   return data;
-  // };
+  const onFileUpload = () => {};
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -56,38 +49,37 @@ function AddVideos({ editId, setEditId, setActiveItem }) {
 
     // const data = await setFormData();
 
-    const data = {
-      name: videoName,
-      description,
-    };
+    const data = new FormData();
+    data.append("video", selectedVideo, selectedVideo.name);
+    data.append("video", selectedImage, selectedImage.name);
+    data.append("name", videoName);
+    data.append("description", description);
 
     setIsLoading(true);
 
     await axios
-      .post(
-        "/api/videos",
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
+      .post("/api/videos", data, {
+        headers: {
+          accept: "application/json",
+          "Accept-Language": "en-US,en;q=0.8",
+          "Content-Type": `multipart/form-data; boundary=${data._boundary}`,
         },
-        {
-          onUploadProgress: (ProgressEvent) => {
-            setLoaded((ProgressEvent.loaded / ProgressEvent.total) * 100);
-          },
-        }
-      )
+        onUploadProgress: (progressEvent) => {
+          // var percentCompleted = Math.round(
+          //   (progressEvent.loaded * 100) / progressEvent.total
+          // );
+          const { loaded, total } = progressEvent;
+          let percent = Math.floor((loaded * 100) / total);
+          setProgress(loaded);
+        },
+      })
       .then((res) => {
-        console.log("Upload Successful", res.data);
-        setCreated(true);
-        setTimeout(() => {
-          setCreated(false);
-        }, 3000);
+        console.log("Res =>", res.data);
       })
       .catch((err) => {
-        console.log(`Upload Fail with status: ${err.statusText}`);
+        console.log("Err => ", err.data);
       });
+
     setIsLoading(false);
     setActiveItem("All Videos");
   };
@@ -112,6 +104,10 @@ function AddVideos({ editId, setEditId, setActiveItem }) {
       <div style={{ textAlign: "center" }}>
         <h1>Upload Video</h1>
       </div>
+
+      <h1 style={{ position: "fixed", top: "0", left: "50" }}>
+        Loading {progress}%
+      </h1>
 
       <Form
         onSubmit={editId ? onUpdate : onSubmit}

@@ -46,7 +46,7 @@ function AllVideos({
             videos.map((vid) => (
               <Grid.Column key={vid._id} style={{ marginBottom: "30px" }}>
                 <Image
-                  src="https://iwfstaff.com.au/wp-content/uploads/2017/12/placeholder-image-300x207.png"
+                  src={vid.thumbnail_path}
                   className="img"
                   style={{ cursor: "pointer" }}
                   onClick={() => {
@@ -76,7 +76,13 @@ function AllVideos({
                       Delete
                     </button>
                   </div>
-                  <div class="ui labeled button">
+                  <div
+                    class="ui labeled button"
+                    onClick={() => {
+                      setShowSingleVideo(true);
+                      setSingleVideo(vid);
+                    }}
+                  >
                     <button class="ui blue basic button" tabindex="0">
                       <i aria-hidden="true" class="comments icon"></i>
                       Riviews <span>{vid.reviews.length}</span>

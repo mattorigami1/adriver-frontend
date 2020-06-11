@@ -60,7 +60,7 @@ function SingleVideo({ setShowSingleVideo, singleVideo, setSingleVideo }) {
       <div>
         <Grid celled>
           <Grid.Column width={4}>
-            <Image src="https://iwfstaff.com.au/wp-content/uploads/2017/12/placeholder-image-300x207.png" />
+            <Image src={singleVideo.thumbnail_path} />
             <div
               style={{
                 textAlign: "center",
@@ -68,12 +68,7 @@ function SingleVideo({ setShowSingleVideo, singleVideo, setSingleVideo }) {
               }}
             >
               <h3>{singleVideo.name}</h3>
-              <p>
-                <strong>{singleVideo.description} </strong>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Ratione nemo esse ducimus eius ipsam a blanditiis eaque enim
-                dolorum perspiciatis.
-              </p>
+              <p>{singleVideo.description}</p>
             </div>
           </Grid.Column>
           <Grid.Column width={12}>
@@ -81,7 +76,7 @@ function SingleVideo({ setShowSingleVideo, singleVideo, setSingleVideo }) {
               <Player
                 playsInline
                 poster="/assets/poster.png"
-                src={require("../../sample.webm")}
+                src={singleVideo.video_path}
               />
             </div>
           </Grid.Column>

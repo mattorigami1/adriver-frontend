@@ -5,6 +5,7 @@ import { RootContext } from "../../context/RootContext";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
+import setAuthTokenAxios from "../../utils/setAuthTokenAxios";
 
 function Login() {
   let history = useHistory();
@@ -27,6 +28,7 @@ function Login() {
         const { token } = res.data;
         localStorage.setItem("auth", token);
         setAuthToken(token);
+        setAuthTokenAxios(token);
         // Decode token to get user data
         const decoded = jwt_decode(token);
         localStorage.setItem("user", decoded);
