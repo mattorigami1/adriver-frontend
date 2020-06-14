@@ -5,13 +5,13 @@ import AddVideos from "../../components/AddVideos";
 import SingleVideo from "../../components/SingleVideo";
 
 function Home() {
-  const [activeItem, setActiveItem] = useState("All Videos");
+  const [activeItem, setActiveItem] = useState("All ADS");
   const [editId, setEditId] = useState("");
   const [showSingleVideo, setShowSingleVideo] = useState(false);
   const [singleVideo, setSingleVideo] = useState({});
 
   const handleItemClick = (e, { name }) => {
-    if (name === "All Videos") {
+    if (name === "All ADS") {
       setEditId("");
       setActiveItem(name);
     } else {
@@ -26,7 +26,7 @@ function Home() {
           <Icon name="settings" />
           Dashboard Settings
           <Header.Subheader>
-            Upload Videos, keep record of All Videos.
+            Upload Videos, keep record of All ADS.
           </Header.Subheader>
         </Header>
       </div>
@@ -35,20 +35,20 @@ function Home() {
         <Grid.Column width={4}>
           <Menu fluid vertical tabular>
             <Menu.Item
-              name="All Videos"
-              active={activeItem === "All Videos"}
+              name="All ADS"
+              active={activeItem === "All ADS"}
               style={
-                activeItem === "All Videos"
+                activeItem === "All ADS"
                   ? { color: "white", backgroundColor: "gray" }
                   : {}
               }
               onClick={handleItemClick}
             />
             <Menu.Item
-              name="Add Videos"
-              active={activeItem === "Add Videos"}
+              name="Add ADS"
+              active={activeItem === "Add ADS"}
               style={
-                activeItem === "Add Videos"
+                activeItem === "Add ADS"
                   ? { color: "white", backgroundColor: "gray" }
                   : {}
               }
@@ -59,7 +59,7 @@ function Home() {
 
         <Grid.Column stretched width={12}>
           <Segment>
-            {activeItem === "All Videos" && !showSingleVideo && (
+            {activeItem === "All ADS" && !showSingleVideo && (
               <AllVideos
                 setEditId={setEditId}
                 setActiveItem={setActiveItem}
@@ -69,14 +69,14 @@ function Home() {
                 setSingleVideo={setSingleVideo}
               />
             )}
-            {activeItem === "All Videos" && showSingleVideo && (
+            {activeItem === "All ADS" && showSingleVideo && (
               <SingleVideo
                 setShowSingleVideo={setShowSingleVideo}
                 singleVideo={singleVideo}
                 setSingleVideo={setSingleVideo}
               />
             )}
-            {activeItem === "Add Videos" && (
+            {activeItem === "Add ADS" && (
               <AddVideos
                 editId={editId}
                 setEditId={setEditId}

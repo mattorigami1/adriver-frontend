@@ -75,7 +75,7 @@ function SingleVideo({ setShowSingleVideo, singleVideo, setSingleVideo }) {
             <div style={{ width: "100%" }}>
               <Player
                 playsInline
-                poster="/assets/poster.png"
+                poster={singleVideo.thumbnail_path}
                 src={singleVideo.video_path}
               />
             </div>
@@ -157,6 +157,7 @@ function SingleVideo({ setShowSingleVideo, singleVideo, setSingleVideo }) {
                   <Table.HeaderCell>Negative</Table.HeaderCell>
                   <Table.HeaderCell>Possitive</Table.HeaderCell>
                   <Table.HeaderCell>Like</Table.HeaderCell>
+                  <Table.HeaderCell>Heard Before</Table.HeaderCell>
                   <Table.HeaderCell>Date</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
@@ -173,6 +174,9 @@ function SingleVideo({ setShowSingleVideo, singleVideo, setSingleVideo }) {
                       </Table.Cell>
                       <Table.Cell>
                         <Label>{item.like ? "Liked" : "Disliked"}</Label>
+                      </Table.Cell>
+                      <Table.Cell>
+                        <Label>{item.heardBefore ? "Yes" : "No"}</Label>
                       </Table.Cell>
                       <Table.Cell>
                         <Label>{moment(item.date, "YYYYMMDD").fromNow()}</Label>
