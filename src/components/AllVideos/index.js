@@ -38,7 +38,7 @@ function AllVideos({
   return (
     <>
       <div style={{ textAlign: "center", marginBottom: "40px" }}>
-        <h1>All ADS</h1>
+        <h1>All Ads</h1>
       </div>
       {isLoading ? (
         <Dimmer style={{ marginTop: "40px" }} active inverted>
@@ -103,7 +103,7 @@ function AllVideos({
                       class="ui labeled button"
                       onClick={() => {
                         setEditId(vid._id);
-                        setActiveItem("Add ADS");
+                        setActiveItem("Add Ads");
                       }}
                     >
                       <button class="ui orange basic button" tabindex="0">

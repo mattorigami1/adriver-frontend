@@ -97,14 +97,14 @@ function AddVideos({ editId, setEditId, setActiveItem }) {
           },
         })
         .then((res) => {
-          toast.success("Add Uploaded Successfully");
+          toast.success("Ad Uploaded Successfully");
         })
         .catch((err) => {
           toast.error("Problem in uploading your AD");
         });
 
       setIsLoading(false);
-      setActiveItem("All ADS");
+      setActiveItem("All Ads");
     } else {
       toast.warning("No Internet Connection");
       return false;
@@ -143,11 +143,11 @@ function AddVideos({ editId, setEditId, setActiveItem }) {
             }
           )
           .then((res) => {
-            toast.success("Add Updated Successfully");
+            toast.success("Ad Updated Successfully");
           });
         setIsLoading(false);
         setEditId("");
-        setActiveItem("All ADS");
+        setActiveItem("All Ads");
       } else {
         toast.warning("No Internet Connection");
         return false;
@@ -176,11 +176,11 @@ function AddVideos({ editId, setEditId, setActiveItem }) {
             },
           })
           .then((res) => {
-            toast.success("Add Updated Successfully");
+            toast.success("Ad Updated Successfully");
           });
         setIsLoading(false);
         setEditId("");
-        setActiveItem("All ADS");
+        setActiveItem("All Ads");
       } else {
         toast.warning("No Internet Connection");
         return false;
@@ -209,11 +209,11 @@ function AddVideos({ editId, setEditId, setActiveItem }) {
             },
           })
           .then((res) => {
-            toast.success("Add Updated Successfully");
+            toast.success("Ad Updated Successfully");
           });
         setIsLoading(false);
         setEditId("");
-        setActiveItem("All ADS");
+        setActiveItem("All Ads");
       } else {
         toast.warning("No Internet Connection");
         return false;
@@ -243,11 +243,11 @@ function AddVideos({ editId, setEditId, setActiveItem }) {
             },
           })
           .then((res) => {
-            toast.success("Add Updated Successfully");
+            toast.success("Ad Updated Successfully");
           });
         setIsLoading(false);
         setEditId("");
-        setActiveItem("All ADS");
+        setActiveItem("All Ads");
       } else {
         toast.warning("No Internet Connection");
         return false;
@@ -326,7 +326,7 @@ function AddVideos({ editId, setEditId, setActiveItem }) {
         {created && (
           <div class="ui info message">
             <div class="header">Video Uploaded Successfuly</div>
-            <p>Go to all ADS to show ADS</p>
+            <p>Go to all Ads to show Ads</p>
           </div>
         )}
       </Form>

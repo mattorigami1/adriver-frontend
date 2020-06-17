@@ -5,13 +5,13 @@ import AddVideos from "../../components/AddVideos";
 import SingleVideo from "../../components/SingleVideo";
 
 function Home() {
-  const [activeItem, setActiveItem] = useState("All ADS");
+  const [activeItem, setActiveItem] = useState("All Ads");
   const [editId, setEditId] = useState("");
   const [showSingleVideo, setShowSingleVideo] = useState(false);
   const [singleVideo, setSingleVideo] = useState({});
 
   const handleItemClick = (e, { name }) => {
-    if (name === "All ADS") {
+    if (name === "All Ads") {
       setEditId("");
       setActiveItem(name);
     } else {
@@ -26,7 +26,7 @@ function Home() {
           <Icon name="settings" />
           Dashboard Settings
           <Header.Subheader>
-            Upload Videos, keep record of All ADS.
+            Upload Videos, keep record of All Ads.
           </Header.Subheader>
         </Header>
       </div>
@@ -35,20 +35,20 @@ function Home() {
         <Grid.Column width={4}>
           <Menu fluid vertical tabular>
             <Menu.Item
-              name="All ADS"
-              active={activeItem === "All ADS"}
+              name="All Ads"
+              active={activeItem === "All Ads"}
               style={
-                activeItem === "All ADS"
+                activeItem === "All Ads"
                   ? { color: "white", backgroundColor: "gray" }
                   : {}
               }
               onClick={handleItemClick}
             />
             <Menu.Item
-              name="Add ADS"
-              active={activeItem === "Add ADS"}
+              name="Add Ads"
+              active={activeItem === "Add Ads"}
               style={
-                activeItem === "Add ADS"
+                activeItem === "Add Ads"
                   ? { color: "white", backgroundColor: "gray" }
                   : {}
               }
@@ -59,7 +59,7 @@ function Home() {
 
         <Grid.Column stretched width={12}>
           <Segment>
-            {activeItem === "All ADS" && !showSingleVideo && (
+            {activeItem === "All Ads" && !showSingleVideo && (
               <AllVideos
                 setEditId={setEditId}
                 setActiveItem={setActiveItem}
@@ -69,14 +69,14 @@ function Home() {
                 setSingleVideo={setSingleVideo}
               />
             )}
-            {activeItem === "All ADS" && showSingleVideo && (
+            {activeItem === "All Ads" && showSingleVideo && (
               <SingleVideo
                 setShowSingleVideo={setShowSingleVideo}
                 singleVideo={singleVideo}
                 setSingleVideo={setSingleVideo}
               />
             )}
-            {activeItem === "Add ADS" && (
+            {activeItem === "Add Ads" && (
               <AddVideos
                 editId={editId}
                 setEditId={setEditId}

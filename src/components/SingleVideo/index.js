@@ -27,7 +27,8 @@ function SingleVideo({ setShowSingleVideo, singleVideo, setSingleVideo }) {
     await axios
       .post(`/api/videos/review/${singleVideo._id}`, {
         negative: negativeReview ? "Yes" : "No",
-        possitive: possitiveReview ? "Yes" : "No",
+        positive: possitiveReview ? "Yes" : "No",
+        heardBefore: true,
         like,
       })
       .then((res) => {
@@ -45,6 +46,18 @@ function SingleVideo({ setShowSingleVideo, singleVideo, setSingleVideo }) {
   const handlePossitiveChange = () => setPossitiveReview(!possitiveReview);
 
   const handleLikeChange = () => setLike(!like);
+
+  const onDeleteReview = async (review_id) => {
+    await axios
+      .put(`/api/videos/deleteReview/${singleVideo._id}/${review_id}`)
+      .then((res) => {
+        setSingleVideo(res.data.data);
+        setComment("");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div>
@@ -159,6 +172,7 @@ function SingleVideo({ setShowSingleVideo, singleVideo, setSingleVideo }) {
                   <Table.HeaderCell>Like</Table.HeaderCell>
                   <Table.HeaderCell>Heard Before</Table.HeaderCell>
                   <Table.HeaderCell>Date</Table.HeaderCell>
+                  <Table.HeaderCell>Delete</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
 
@@ -170,7 +184,7 @@ function SingleVideo({ setShowSingleVideo, singleVideo, setSingleVideo }) {
                         <Label>{item.negative}</Label>
                       </Table.Cell>
                       <Table.Cell>
-                        <Label>{item.possitive}</Label>
+                        <Label>{item.positive}</Label>
                       </Table.Cell>
                       <Table.Cell>
                         <Label>{item.like ? "Liked" : "Disliked"}</Label>
@@ -180,6 +194,16 @@ function SingleVideo({ setShowSingleVideo, singleVideo, setSingleVideo }) {
                       </Table.Cell>
                       <Table.Cell>
                         <Label>{moment(item.date, "YYYYMMDD").fromNow()}</Label>
+                      </Table.Cell>
+                      <Table.Cell>
+                        <Label>
+                          <Icon
+                            name="trash"
+                            color="red"
+                            style={{ cursor: "pointer" }}
+                            onClick={onDeleteReview.bind(this, item._id)}
+                          />
+                        </Label>
                       </Table.Cell>
                     </Table.Row>
                   ))
